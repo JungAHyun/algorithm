@@ -4,27 +4,26 @@ sys.setrecursionlimit(10 ** 6)  # 재귀 허용 깊이를 수동으로 늘려주
 
 def bfs():
     while q:
-        x, y = q.popleft()
-        
+        y, x = q.popleft()
+
         for i in range(4):
-            x2 = dx[i] + x
-            y2 = dy[i] + y
+            x2 = x + dx[i] 
+            y2 = y + dy[i] 
 
-            if 0 <= x2 and x2 < width and 0 <= y2 and y2 < length and graph[x2][y2] == 0:
+            if 0 <= x2 and x2 < width and 0 <= y2 and y2 < length and graph[y2][x2] == 0:
 
-                graph[x2][y2] = graph[x][y] + 1
-                q.append([x2, y2])
+                graph[y2][x2] = graph[y][x] + 1
+                q.append([y2, x2])
 
 
 width, length = map(int, input().split(' '))
 graph = []
 cnt = 0
-dx, dy = [-1, 1, 0, 0], [0, 0, -1, 1]              #방향 리스트
-q = deque([])
+dx, dy= [-1, 1, 0, 0], [0, 0, -1, 1]              #방향 리스트
+q = deque()
 
 for i in range(length):
-    tomato = list(map(int, input().split(' ')))
-    graph.append(tomato)
+    graph.append(list(map(int, input().split(' '))))
 
 #토마토 있는 위치를 큐에 저장
 for i in range(length):
