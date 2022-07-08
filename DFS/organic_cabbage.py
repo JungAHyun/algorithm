@@ -1,4 +1,3 @@
-from collections import deque
 import sys
 sys.setrecursionlimit(10 ** 6)  
 
@@ -23,17 +22,16 @@ result = []
 for __ in range(test):
     width, length, position = map(int, input().split(' '))
     graph = [[0 for _ in range(width)]] * length
-
+    
     for _ in range(position):
         x,y = map(int, input().split(' '))
         graph[y][x] = 1  
-
-        cnt = 0
-
-        for i in range(length):
-            for j in range(width):
-                if dfs(i, j)  == True:   
-                    cnt+=1
+    print(graph)
+    cnt = 0
+    for i in range(length):
+        for j in range(width):
+            if dfs(i, j)  == True:   
+                cnt+=1
 
     result.append(cnt)
     
