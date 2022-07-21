@@ -23,6 +23,7 @@ for i in range(sadari_cnt):
 num = 1 
 cnt = 0
 x, y = sadari_q.popleft()
+
 def dfs(num):
     global cnt, x, y
     use_x, use_y = x,y
