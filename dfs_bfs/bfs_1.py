@@ -1,7 +1,6 @@
 import sys
 from collections import deque
 
-
 def bfs(start):
     q = deque()
     visited[start] = 1
