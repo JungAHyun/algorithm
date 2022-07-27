@@ -11,6 +11,7 @@ graph = [[] for _ in range(n+1)]
 for _ in range(m):
     a, b, c = map(int, input().split(' '))
     graph[a].append((b,c))
+    graph[b].append((a,c))
 
 v1, v2 =  map(int, input().split(' '))  #반드시 거쳐야 하는 두 정점
 
@@ -43,14 +44,12 @@ def shortest_path(start):
     return shortest_dis
 
 
-
 shortest_dis_0 = shortest_path(1)     #1과 다른 정점과의 최소 거리
 shortest_dis_1 = shortest_path(v1)    #v1과 다른 정점과의 최소 거리
 shortest_dis_2 = shortest_path(v2)    #v2와 다른 정점과의 최소 거리
 
-
 result_1 = shortest_dis_0[v1] + shortest_dis_1[v2] + shortest_dis_2[n]
-result_2 = shortest_dis_0[v2] + shortest_dis_1[n] + shortest_dis_2[v1]
+result_2 = shortest_dis_0[v2] + shortest_dis_1[v2] + shortest_dis_1[n]
 
 result = min(result_1,result_2)
 
