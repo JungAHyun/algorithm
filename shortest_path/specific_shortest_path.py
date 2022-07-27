@@ -48,11 +48,6 @@ shortest_dis_0 = shortest_path(1)     #1과 다른 정점과의 최소 거리
 shortest_dis_1 = shortest_path(v1)    #v1과 다른 정점과의 최소 거리
 shortest_dis_2 = shortest_path(v2)    #v2와 다른 정점과의 최소 거리
 
-print(shortest_dis_0)
-print(shortest_dis_1)
-print(shortest_dis_2[v1])
-
-
 
 result_1 = shortest_dis_0[v1] + shortest_dis_1[v2] + shortest_dis_2[n]
 result_2 = shortest_dis_0[v2] + shortest_dis_1[n] + shortest_dis_2[v1]
