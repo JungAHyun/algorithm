@@ -1,33 +1,15 @@
 
+#g, h 두 지점을 반드시 지나는 최단경로 중 목적지가 목적지 후보인 것을 찾는 문제로 생각.
+
 import heapq
 import sys
 
 input = sys.stdin.readline
 INF = int(1e9)
 
-n,m,t = map(int, input().split(' '))  #n: 정점의 개수(교차로), m: 간선의 개수(도로) t:목적지후보의 개수
-start,v1,v2 = map(int, input().split(' '))  #start: 출발지, v1,v2: 반드시 거쳐야 하는 두 정점
-des = [[]* (n+1)] 
-for i in range(t):
-    a = int(input())
-    des[a] = 0
-
-print(des)
-exit(0)
-
-graph = [[] for _ in range(n+1)]
-result = []*t
-
-for _ in range(m):
-    a, b, c = map(int, input().split(' '))
-    graph[a].append((b,c))
-    graph[b].append((a,c))
-
-v1, v2 =  map(int, input().split(' '))  
 
 def shortest_path(start):
     shortest_dis = [INF]*(n+1)
-    graph_use = graph
     q = []
 
     heapq.heappush(q, (0,start))
@@ -41,7 +23,7 @@ def shortest_path(start):
             continue
         
         # now 노드와 연결된 노드들 확인
-        for i in graph_use[now]:
+        for i in graph[now]:
             cost = dis + i[1]
             # now 노드를 거쳐 가는 거리가 짧은 경우 변경
             if shortest_dis[i[0]] > cost:
@@ -54,19 +36,49 @@ def shortest_path(start):
     return shortest_dis
 
 
-shortest_dis_0 = shortest_path(1)     #1과 다른 정점과의 최소 거리
-shortest_dis_1 = shortest_path(v1)    #v1과 다른 정점과의 최소 거리
-shortest_dis_2 = shortest_path(v2)    #v2와 다른 정점과의 최소 거리
+test_case= int(input())
 
-result_1 = shortest_dis_0[v1] + shortest_dis_1[v2] + shortest_dis_2[n]
-result_2 = shortest_dis_0[v2] + shortest_dis_1[v2] + shortest_dis_1[n]
+for i in range(test_case):
+    n,m,t = map(int, input().split(' '))        #n: 정점의 개수(교차로), m: 간선의 개수(도로) t:목적지후보의 개수
+    s,g,h = map(int, input().split(' '))      #s: 출발지, g,h: 반드시 거쳐야 하는 두 정점
+    
+    graph = [[] for _ in range(n+1)]
+    for _ in range(m):
+        a, b, c = map(int, input().split(' '))
+        graph[a].append((b,c))
+        graph[b].append((a,c))
+    
 
-result = min(result_1,result_2)
+    #목적지 후보 리스트
+    des = [] 
+    for _ in range(t):
+        des.append(int(input()))
 
-if result >= 100000000:
-    result = -1
+    shortest_dis_s = shortest_path(s)     #s과 다른 정점과의 최소 거리 리스트
+    shortest_dis_g = shortest_path(g)    #g과 다른 정점과의 최소 거리 리스트
+    shortest_dis_h = shortest_path(h)    #h와 다른 정점과의 최소 거리 리스트
+    
+    result = [] 
+    #목적지 j로 가는 최소거리 구하기
+    for d in des:
+       
+        result_1 = shortest_dis_s[g] + shortest_dis_g[h] + shortest_dis_h[d]  
+        result_2 = shortest_dis_s[h] + shortest_dis_h[g] + shortest_dis_g[d]
+        
+        #g, h를 거쳐가는 경로가 목적지 후보로 가는 최소 거리인 경우 
+        if result_1 == shortest_dis_s[d] or result_2 == shortest_dis_s[d]:
+            result.append(d)
 
-print(result)
+    result.sort()
+
+    for r in result:
+        print(r, end = ' ')
+    print()
+
+
+        
+        
+
 
 
 
