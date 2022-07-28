@@ -37,6 +37,7 @@ def shortest_path(start):
 
 
 test_case= int(input())
+result = [[] for _ in range(test_case)]
 
 for i in range(test_case):
     n,m,t = map(int, input().split(' '))        #n: 정점의 개수(교차로), m: 간선의 개수(도로) t:목적지후보의 개수
@@ -58,7 +59,7 @@ for i in range(test_case):
     shortest_dis_g = shortest_path(g)    #g과 다른 정점과의 최소 거리 리스트
     shortest_dis_h = shortest_path(h)    #h와 다른 정점과의 최소 거리 리스트
     
-    result = [] 
+
     #목적지 j로 가는 최소거리 구하기
     for d in des:
        
@@ -67,12 +68,13 @@ for i in range(test_case):
         
         #g, h를 거쳐가는 경로가 목적지 후보로 가는 최소 거리인 경우 
         if result_1 == shortest_dis_s[d] or result_2 == shortest_dis_s[d]:
-            result.append(d)
+            result[i].append(d)
 
-    result.sort()
+    result[i].sort()
 
-    for r in result:
-        print(r, end = ' ')
+for i in range(test_case):
+    for j in range(len(result[i])):
+        print(result[i][j], end = ' ')
     print()
 
 
