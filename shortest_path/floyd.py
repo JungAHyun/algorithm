@@ -18,7 +18,7 @@ for a in range(1, n+1):
 
 for _ in range(m):
     a, b, c = map(int, input().split(' '))  #a:출발도시, b: 도착도시 c: 비용
-    graph[a][b] = c
+    graph[a][b] = min(c, graph[a][b])
 
 for k in range(1,n+1):
     for a in range(1, n+1):
