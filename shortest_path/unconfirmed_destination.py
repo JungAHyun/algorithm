@@ -1,5 +1,5 @@
 
-#g, h 두 지점을 반드시 지나는 최단경로 중 목적지가 목적지 후보인 것을 찾는 문제로 생각.
+# g, h 두 지점을 지나 목적지 후보로 가능 경로가 최단경로인 것을 찾는 문제라고 생각.
 
 import heapq
 import sys
@@ -62,7 +62,6 @@ for i in range(test_case):
 
     #목적지 j로 가는 최소거리 구하기
     for d in des:
-       
         result_1 = shortest_dis_s[g] + shortest_dis_g[h] + shortest_dis_h[d]  
         result_2 = shortest_dis_s[h] + shortest_dis_h[g] + shortest_dis_g[d]
         
