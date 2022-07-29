@@ -33,3 +33,12 @@ def bf(start):
 
 negative_cycle = bf(1)
 
+if negative_cycle:
+    print('-1')
+else:
+    # 1번 노드를 제외한 다른 모든 노드로 가기 위한 최단 거리 출력
+    for i in range(2, n+1):
+        if dist[i] == INF: 
+            print('-1')
+        else:
+            print(dist[i])
