@@ -17,12 +17,11 @@ v1, v2 =  map(int, input().split(' '))  #반드시 거쳐야 하는 두 정점
 
 def shortest_path(start):
     shortest_dis = [INF]*(n+1)
-    graph_use = graph
     q = []
 
     heapq.heappush(q, (0,start))
     shortest_dis[start] = 0
-
+    
     while(q):
         dis, now = heapq.heappop(q)
 
@@ -31,7 +30,7 @@ def shortest_path(start):
             continue
         
         # now 노드와 연결된 노드들 확인
-        for i in graph_use[now]:
+        for i in graph[now]:
             cost = dis + i[1]
             # now 노드를 거쳐 가는 거리가 짧은 경우 변경
             if shortest_dis[i[0]] > cost:
@@ -47,6 +46,11 @@ def shortest_path(start):
 shortest_dis_0 = shortest_path(1)     #1과 다른 정점과의 최소 거리
 shortest_dis_1 = shortest_path(v1)    #v1과 다른 정점과의 최소 거리
 shortest_dis_2 = shortest_path(v2)    #v2와 다른 정점과의 최소 거리
+
+
+print(shortest_dis_0)
+print(shortest_dis_1)
+print(shortest_dis_0)
 
 result_1 = shortest_dis_0[v1] + shortest_dis_1[v2] + shortest_dis_2[n]
 result_2 = shortest_dis_0[v2] + shortest_dis_1[v2] + shortest_dis_1[n]
