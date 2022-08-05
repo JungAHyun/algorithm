@@ -46,6 +46,7 @@ def shortest_path(start):
 
 
 shortest_path(1)
+
 if  -1 in shortest_time :
     print('-1')
 else:
