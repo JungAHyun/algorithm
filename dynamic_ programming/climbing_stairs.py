@@ -6,36 +6,27 @@ scores = []
 for _ in range(n):
     scores.append(int(input()))
 
+
+sum = scores[0]
 cnt = 0
-s = scores[0]
-
-i = 1
+i = 0
 while i < n:
-    if len(scores)  < 3:
-        s = sum(scores)
-        break
-
-    # if i == n-3 and scores[i] < scores[i+1] and scores[i+1] < scores[i+2]:
-    #     s = s + scores[i+2] + scores[i]
-    #     break
-
-    if cnt == 2 :
+    
+    if cnt == 2:
         i+=1
         cnt =0
         continue
-    
 
-        
-    if scores[i] > scores[i+1]:
-        s = scores[i]+ s
+    if scores[i]> scores[i+1]:
+        sum = scores[i]+ sum
         i += 2
         cnt += 1
     else:
-        s = scores[i+1]+ s
+        sum = scores[i+1]+ sum
         i +=1
         cnt = 0
         
         
 
 
-print(s)
+print(sum)
