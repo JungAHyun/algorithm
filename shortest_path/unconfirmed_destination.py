@@ -18,7 +18,7 @@ def shortest_path(start):
     while(q):
         dis, now = heapq.heappop(q)
 
-        #지금 노드에 있는 거리가 더 짧으면 넘어감.
+        
         if shortest_dis[now] < dis :
             continue
         
