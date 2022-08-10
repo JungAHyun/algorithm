@@ -26,7 +26,7 @@ def shortest_path(start):
 
         if distance[now] < dis:
             continue
-        for i in graph[now]:
+        for i in graph[now]: 
             cost = dis + i[1]
             if cost < distance[i[0]]:
                 distance[i[0]] = cost
