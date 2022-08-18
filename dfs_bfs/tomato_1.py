@@ -32,6 +32,7 @@ for i in range(length):
             q.append([i , j])
 
 bfs()
+
 for i in graph:
     for j in i:
         # 다 찾아봤는데 토마토를 익히지 못했다면 -1 출력
