@@ -9,7 +9,6 @@ def padovan(n):
         d[i] = d[i-3] + d[i-2] 
     return d[n]
 
-
 t = int(input())
 for _ in range(t):
     n = int(input())
