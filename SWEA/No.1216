@@ -1,0 +1,59 @@
+# 1216
+
+def palindrome(s):
+    cnt = 0
+
+    for i in range(int(len(s) / 2)):
+        if s[i] != s[len(s) - i - 1]:
+            cnt += 1
+    return cnt
+
+
+T = 10
+for tc in range(1, T + 1):
+    num = int(input())
+    board = []
+    result = 0
+    for _ in range(100):
+        board.append(list(input()))
+
+    re_board = list(zip(*board))
+
+    length = 0
+    # 오른쪽이랑 아래만 확인하기
+    # 최대길이부터 거꾸로 검사한다
+    # 해당 길이에서 최대값을 저장하게 되면 같은 길이나 그보다 작은 길이에서는
+    # 검사할 필요가 없으므로 break선언
+
+    for i in range(100):
+        for j in range(100):
+            s1 = []
+            s2 = []
+            re1 = -1
+            re2 = -1
+
+            # 오른쪽 회문 확인
+            for l in range(length, 99):
+                s1 = board[i][j:j + l]
+
+                if len(s1) == 0 or len(s1) < length:
+                    continue
+                else:
+                    re1 = palindrome(s1)
+
+                if re1 == 0 and len(s1) > length:
+                    length = len(s1)
+
+            # 아래쪽 회문 확인
+            for l in range(length, 99):
+                s2 = re_board[i][j:j + l]
+
+                if len(s2) == 0 or len(s2) < length:
+                    continue
+                else:
+                    re2 = palindrome(s2)
+
+                if re2 == 0 and len(s2) > length:
+                    length = len(s2)
+
+    print(f"#{tc} {length}")
